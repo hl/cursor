@@ -1,0 +1,72 @@
+# Rule: elixir-code-style
+
+## Description
+
+This rule ensures that all Elixir code generated or modified adheres to the conventions outlined in the community Elixir Style Guide. Following this guide promotes consistency, readability, and maintainability across the codebase.
+
+## Rule
+
+When writing or modifying Elixir code, adhere to the following principles based on [The Elixir Style Guide](https://raw.githubusercontent.com/christopheradams/elixir_style_guide/refs/heads/master/README.md):
+
+1. **Formatting:**
+    * Primarily, rely on the built-in Elixir code formatter (`mix format`). The rules below are principles enforced by the formatter.
+    * Limit lines to 98 characters unless configured otherwise in `.formatter.exs`.
+    * Use spaces around binary operators, after commas, colons, and semicolons. Do not use spaces around paired brackets (`[]`, `{}`, `()`) or after unary operators.
+    * Use blank lines between function definitions (`def`, `defp`, etc.) but not immediately after `defmodule`.
+    * Format multiline lists, maps, structs, `case`, and `cond` clauses with each element/clause on its own line, indented appropriately.
+    * Place comments on the line *above* the code they refer to, with a single space after the `#`.
+
+2. **Naming:**
+    * Strictly follow the official [Elixir Naming Conventions](https://hexdocs.pm/elixir/naming-conventions.html) for variables, functions, modules, etc. (`snake_case` for variables/functions/atoms, `CamelCase` for modules/structs).
+
+3. **Comments & Documentation:**
+    * Write clear and concise comments.
+    * Use standard annotations like `TODO:`, `FIXME:`, `OPTIMIZE:`.
+    * Provide `@moduledoc` for modules and `@doc` for public functions. Use Markdown for formatting within documentation.
+    * Write comprehensive documentation examples using `iex>` prompts.
+
+4. **Typespecs:**
+    * Use `@typedoc` to document custom types defined with `@type`.
+    * Use `@spec` to define function specifications.
+
+5. **Modules:**
+    * Use `alias` to shorten module names, but avoid ambiguity or conflicts. Use full names if aliasing would cause confusion.
+    * Use `require` specifically when macros from another module are needed.
+    * Use `import` sparingly, preferring fully qualified function calls.
+    * Generally, define one module per file.
+
+6. **Structs:**
+    * Define struct fields explicitly using `defstruct`.
+    * Prefer atom keys and list them alphabetically.
+
+7. **Exceptions:**
+    * Custom exception module names should end with `Error` (e.g., `MyCustomError`).
+    * Use lowercase messages without trailing punctuation when raising exceptions.
+
+8. **Collections:**
+    * Use the shorthand syntax for keyword lists: `[key: value]`.
+    * Use the shorthand map syntax `%{key: value}` when all keys are atoms. Use `=>` syntax if keys are mixed types or non-atoms.
+
+9. **Strings:**
+    * Prefer the string concatenation operator (`<>`) for matching string prefixes over binary pattern matching.
+
+10. **Testing (ExUnit):**
+    * In assertions, place the expression being tested on the left side of the operator (`assert actual == expected`), except for pattern matching assertions (`assert {:ok, value} = function_call()`).
+
+11. **Metaprogramming:**
+    * Avoid metaprogramming unless it provides a significant advantage and the complexity is justified.
+
+## Implementation
+
+- The AI assistant will:
+  * Reference [The Elixir Style Guide](https://raw.githubusercontent.com/christopheradams/elixir_style_guide/refs/heads/master/README.md) when generating or modifying Elixir code.
+  * Prioritize using `mix format` for automatic formatting where applicable.
+  * Apply the specific stylistic points (naming, documentation, syntax choices) outlined in the guide.
+  * Explain deviations from the style guide if necessary for specific technical reasons.
+
+## Benefits
+
+- Improved code consistency across the project.
+* Enhanced readability and maintainability.
+* Alignment with broader Elixir community best practices.
+* Reduced cognitive load when switching between different parts of the codebase.

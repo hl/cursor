@@ -1,0 +1,64 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Description
+This rule ensures that before Cursor IDE suggests code, it makes sure that it's valid by checking the documentation or codebase first. This ensures at least that the modules and functions exist and that the arguments are in the correct order.
+
+## Rule
+Before suggesting code, the Cursor IDE must:
+1.  Determine if a module is internal or external:
+    - A module is considered **internal** if its name starts with the application name defined in `mix.exs` (e.g., `App`).
+    - Otherwise, the module is considered **external**.
+2.  Validate the suggested module, function, and arguments based on its type:
+    a. For **external** dependencies, check official documentation (e.g., HexDocs):
+        - The module MUST exist.
+        - The function MUST exist.
+        - The number of arguments (arity) MUST be correct.
+        - The order of arguments MUST be correct.
+        - If documentation appears incorrect or ambiguous, **issue a formal warning** alongside the suggestion.
+    b. For **internal** project modules/functions, check the current codebase:
+        - An **exact match** for the module definition MUST be found within the project.
+        - An **exact match** for the function definition (matching name and arity) MUST be found within the module.
+        - If the definition cannot be reliably verified in the codebase, **issue a formal warning** alongside the suggestion.
+3.  When multiple function clauses exist, prioritize the one that provides the **minimal working implementation** based on the current context.
+4.  If functional equivalents exist (either internal or external), **prefer functions with clearer documentation or definition**.
+5.  Ensure the final suggested code adheres to these checks.
+
+## Implementation
+- The Cursor IDE will:
+    - Generate potential code changes.
+    - Distinguish between internal and external modules using the project's application name.
+    - Validate these suggestions against official Elixir documentation (for external) *and/or* the project's codebase (for internal) before presenting them, applying the rules for handling multiple function clauses and documentation/definition clarity/errors.
+    - *Future Enhancement:* Consider leveraging Elixir Language Server (ELS) capabilities for more robust internal code validation.
+
+## Benefits
+- Correct and existing module name (external or internal).
+- Correct and existing function name (external or internal).
+- Correct number of arguments.
+- Correct order of arguments.
+- Increased confidence in suggestions involving internal project code.
+
+## Examples
+✅ Correct Code Suggestion (External):
+```elixir
+new_min_start = Enum.min([current_min_start, rule_min_start], Date)
+new_max_end = Enum.max([current_max_end, rule_max_end], Date)
+```
+
+✅ Correct Code Suggestion (Internal - assuming `Backend.Utils.calculate_foo/1` exists):
+```elixir
+result = Backend.Utils.calculate_foo(input_data)
+```
+
+❌ Incorrect Code Suggestion (External):
+```elixir
+new_min_start = Date.min(current_min_start, rule_min_start)
+new_max_end = Date.max(current_max_end, rule_max_end)
+```
+
+❌ Incorrect Code Suggestion (Internal - `Backend.Helpers.process_bar/2` doesn't exist or has wrong arity):
+```elixir
+processed = Backend.Helpers.process_bar(item, :option)
+```
