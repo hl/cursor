@@ -1,4 +1,8 @@
-# Rule: elixir-code-style
+---
+description: Elixir Code Style
+globs: 
+alwaysApply: false
+---
 
 ## Description
 
@@ -31,6 +35,7 @@ When writing or modifying Elixir code, adhere to the following principles based 
 
 5. **Modules:**
     * Use `alias` to shorten module names, but avoid ambiguity or conflicts. Use full names if aliasing would cause confusion.
+    * Module aliases should be listed one per line. Do not group aliases, even if they share a common prefix (e.g., prefer `alias MyApp.Foo\nalias MyApp.Bar` over `alias MyApp.{Foo, Bar}`).
     * Use `require` specifically when macros from another module are needed.
     * Use `import` sparingly, preferring fully qualified function calls.
     * Generally, define one module per file.
@@ -58,7 +63,7 @@ When writing or modifying Elixir code, adhere to the following principles based 
 
 ## Implementation
 
-- The AI assistant will:
+* The AI assistant will:
   * Reference [The Elixir Style Guide](https://raw.githubusercontent.com/christopheradams/elixir_style_guide/refs/heads/master/README.md) when generating or modifying Elixir code.
   * Prioritize using `mix format` for automatic formatting where applicable.
   * Apply the specific stylistic points (naming, documentation, syntax choices) outlined in the guide.
@@ -66,7 +71,8 @@ When writing or modifying Elixir code, adhere to the following principles based 
 
 ## Benefits
 
-- Improved code consistency across the project.
+* Improved code consistency across the project.
+
 * Enhanced readability and maintainability.
 * Alignment with broader Elixir community best practices.
 * Reduced cognitive load when switching between different parts of the codebase.
