@@ -1,19 +1,18 @@
 ---
-description: Elixir Code Style
-globs: 
+description: 
+globs: *.ex,*.exs
 alwaysApply: false
 ---
-
 ## Description
 
 This rule ensures that all Elixir code generated or modified adheres to the conventions outlined in the community Elixir Style Guide. Following this guide promotes consistency, readability, and maintainability across the codebase.
 
 ## Rule
 
-When writing or modifying Elixir code, adhere to the following principles based on [The Elixir Style Guide](https://raw.githubusercontent.com/christopheradams/elixir_style_guide/refs/heads/master/README.md):
+When writing or modifying Elixir code, adhere to the following principles based on [The Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide/blob/master/README.md):
 
 1. **Formatting:**
-    * Primarily, rely on the built-in Elixir code formatter (`mix format`). The rules below are principles enforced by the formatter.
+    * Primarily, rely on the built-in Elixir code formatter (`mix format`). Ensure project-specific formatting is configured in `.formatter.exs`; if one does not exist, consider creating it to explicitly define formatting preferences.
     * Limit lines to 98 characters unless configured otherwise in `.formatter.exs`.
     * Use spaces around binary operators, after commas, colons, and semicolons. Do not use spaces around paired brackets (`[]`, `{}`, `()`) or after unary operators.
     * Use blank lines between function definitions (`def`, `defp`, etc.) but not immediately after `defmodule`.
@@ -64,7 +63,7 @@ When writing or modifying Elixir code, adhere to the following principles based 
 ## Implementation
 
 * The AI assistant will:
-  * Reference [The Elixir Style Guide](https://raw.githubusercontent.com/christopheradams/elixir_style_guide/refs/heads/master/README.md) when generating or modifying Elixir code.
+  * Reference [The Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide/blob/master/README.md) when generating or modifying Elixir code.
   * Prioritize using `mix format` for automatic formatting where applicable.
   * Apply the specific stylistic points (naming, documentation, syntax choices) outlined in the guide.
   * Explain deviations from the style guide if necessary for specific technical reasons.

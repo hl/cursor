@@ -15,7 +15,7 @@ If my response begins with "VV", provide the most succinct, concise, and shortes
 
 - Provide detailed reasoning before executing any coding solution.
 - Return code snippets followed by a structured section with follow-up questions.
-- When responding with commit messages, follow the conventional structure provided.
+- When responding with commit messages, follow the conventional structure detailed in the `git-auto-commit.mdc` rule.
 
 # Examples
 

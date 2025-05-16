@@ -9,7 +9,7 @@ This rule ensures that before Cursor IDE suggests code, it makes sure that it's 
 ## Rule
 Before suggesting code, the Cursor IDE must:
 1.  Determine if a module is internal or external:
-    - A module is considered **internal** if its name starts with the application name defined in `mix.exs` (e.g., `App`).
+    - A module is considered **internal** if its name starts with the application name defined by the `:app` key in the `project/0` function within `mix.exs` (e.g., `YourApp`).
     - Otherwise, the module is considered **external**.
 2.  Validate the suggested module, function, and arguments based on its type:
     a. For **external** dependencies, check official documentation (e.g., HexDocs):
@@ -22,15 +22,16 @@ Before suggesting code, the Cursor IDE must:
         - An **exact match** for the module definition MUST be found within the project.
         - An **exact match** for the function definition (matching name and arity) MUST be found within the module.
         - If the definition cannot be reliably verified in the codebase, **issue a formal warning** alongside the suggestion.
-3.  When multiple function clauses exist, prioritize the one that provides the **minimal working implementation** based on the current context.
+3.  When multiple function clauses exist, prioritize the one that provides the **minimal working implementation** based on the current context (e.g., the clause with the fewest or most specific guards that match, or the most common use case if context is ambiguous).
 4.  If functional equivalents exist (either internal or external), **prefer functions with clearer documentation or definition**.
 5.  Ensure the final suggested code adheres to these checks.
 
 ## Implementation
 - The Cursor IDE will:
     - Generate potential code changes.
-    - Distinguish between internal and external modules using the project's application name.
-    - Validate these suggestions against official Elixir documentation (for external) *and/or* the project's codebase (for internal) before presenting them, applying the rules for handling multiple function clauses and documentation/definition clarity/errors.
+    - Distinguish between internal and external modules using the project's application name (derived from the `:app` key in `mix.exs`).
+    - Validate these suggestions against official Elixir documentation (for external, using HexDocs or web searches for other sources) *and/or* the project's codebase (for internal) before presenting them, applying the rules for handling multiple function clauses and documentation/definition clarity/errors.
+    - For external dependencies not found on HexDocs or with non-standard documentation, use web search capabilities to find and verify against official or reputable sources.
     - *Future Enhancement:* Consider leveraging Elixir Language Server (ELS) capabilities for more robust internal code validation.
 
 ## Benefits

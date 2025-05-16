@@ -14,7 +14,7 @@ After Cursor IDE performs automatic changes:
    - Type: The type of change (feat, fix, docs, style, refactor, test, chore)
    - Scope: The affected component or area (optional)
    - Description: A clear explanation of what changed
-   - Body: Detailed explanation of why the changes were made
+   - Body: Detailed explanation of why the changes were made, which MUST include or be directly derived from the original prompts.
 4. The commit message MUST reference the original prompts used to generate the changes
 
 ## Implementation
@@ -22,8 +22,10 @@ After Cursor IDE performs automatic changes:
   - Track all files modified by automatic changes
   - Generate a conventional commit message based on the changes
   - Include the original prompts in the commit body
-  - Automatically execute the git commit command
-  - Handle any potential merge conflicts or errors
+  - Run project tests to ensure all tests pass. If tests fail, the commit will be aborted, and the user will be notified of the failures.
+  - Automatically execute the git commit command if tests pass.
+  - Handle any potential merge conflicts or errors (e.g., by aborting the commit and notifying the user).
+  - Group related changes across multiple files stemming from a single logical task/original prompt set into one commit.
 
 ## Benefits
 - Maintains clear and consistent commit history
