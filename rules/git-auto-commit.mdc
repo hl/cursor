@@ -23,7 +23,11 @@ After Cursor IDE performs automatic changes:
   - Generate a conventional commit message based on the changes
   - Include the original prompts in the commit body
   - Run project tests to ensure all tests pass. If tests fail, the commit will be aborted, and the user will be notified of the failures.
+    - **Test Execution:** When running project tests (e.g., `mix test`), the command should be executed directly. Rely on the exit code of the test command to determine success (exit code 0) or failure (non-zero exit code). Avoid piping the test command's output to other commands like `cat` for commands like `mix test` that do not use a pager, as this can introduce instability or mask the true exit code in some environments.
   - Automatically execute the git commit command if tests pass.
+  - When automatically executing the `git commit` command, especially for multi-line commit messages (subject and body):
+    - **Preferred Method:** To ensure proper formatting and avoid issues with shell interpretation of special characters and newlines, the commit message SHOULD be written to a temporary file (e.g., `.git_commit_msg.tmp`). The commit should then be made using `git commit -F .git_commit_msg.tmp`. The temporary file should be deleted after a successful commit.
+    - **Alternative (with caution):** If using `git commit -m "message"`, be aware that complex multi-line messages with quotes and newlines can be easily misinterpreted by the shell when passed directly via the `run_terminal_cmd` tool. Literal `\n` and other escape sequences might appear in the final commit message. This method requires careful escaping and is less reliable for multi-line messages than the `-F <file>` method.
   - Handle any potential merge conflicts or errors (e.g., by aborting the commit and notifying the user).
   - Group related changes across multiple files stemming from a single logical task/original prompt set into one commit.
 

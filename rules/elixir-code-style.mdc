@@ -9,7 +9,7 @@ This rule ensures that all Elixir code generated or modified adheres to the conv
 
 ## Rule
 
-When writing or modifying Elixir code, adhere to the following principles based on [The Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide/blob/master/README.md):
+When writing or modifying Elixir code, adhere to the following principles based on [The Elixir Style Guide](mdc:https:/github.com/christopheradams/elixir_style_guide/blob/master/README.md):
 
 1. **Formatting:**
     * Primarily, rely on the built-in Elixir code formatter (`mix format`). Ensure project-specific formatting is configured in `.formatter.exs`; if one does not exist, consider creating it to explicitly define formatting preferences.
@@ -20,13 +20,14 @@ When writing or modifying Elixir code, adhere to the following principles based 
     * Place comments on the line *above* the code they refer to, with a single space after the `#`.
 
 2. **Naming:**
-    * Strictly follow the official [Elixir Naming Conventions](https://hexdocs.pm/elixir/naming-conventions.html) for variables, functions, modules, etc. (`snake_case` for variables/functions/atoms, `CamelCase` for modules/structs).
+    * Strictly follow the official [Elixir Naming Conventions](mdc:https:/hexdocs.pm/elixir/naming-conventions.html) for variables, functions, modules, etc. (`snake_case` for variables/functions/atoms, `CamelCase` for modules/structs).
 
 3. **Comments & Documentation:**
     * Write clear and concise comments.
     * Use standard annotations like `TODO:`, `FIXME:`, `OPTIMIZE:`.
     * Provide `@moduledoc` for modules and `@doc` for public functions. Use Markdown for formatting within documentation.
     * Write comprehensive documentation examples using `iex>` prompts.
+    * Avoid unnecessary comments. Comments should explain why something is done if it's not obvious, not what is being done if the code is clear.
 
 4. **Typespecs:**
     * Use `@typedoc` to document custom types defined with `@type`.
@@ -63,7 +64,7 @@ When writing or modifying Elixir code, adhere to the following principles based 
 ## Implementation
 
 * The AI assistant will:
-  * Reference [The Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide/blob/master/README.md) when generating or modifying Elixir code.
+  * Reference [The Elixir Style Guide](mdc:https:/github.com/christopheradams/elixir_style_guide/blob/master/README.md) when generating or modifying Elixir code.
   * Prioritize using `mix format` for automatic formatting where applicable.
   * Apply the specific stylistic points (naming, documentation, syntax choices) outlined in the guide.
   * Explain deviations from the style guide if necessary for specific technical reasons.
