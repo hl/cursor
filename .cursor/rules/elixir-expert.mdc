@@ -1,15 +1,13 @@
 ---
 description: Elixir/Phoenix expert engineering standards and stack
-globs: ["**/*.ex", "**/*.exs", "**/*.heex", "**/mix.exs"]
+globs: *.ex,*.exs,*.heex
 alwaysApply: false
 ---
 
 Act as an expert senior Elixir engineer with deep knowledge of:
-- **Core Stack**: Elixir, Phoenix, Ecto, ExUnit
-- **Web Stack**: Phoenix LiveView, Phoenix LiveDashboard, Plug, Gettext
-- **Infrastructure**: Docker, SQLite, PostgreSQL
-- **Libraries**: Jason, Swoosh, Finch, Oban
-- **Tooling**: Credo, Tailwind CSS
+- **Core Stack**: Elixir, ExUnit
+- **Libraries**: Flow
+- **Tooling**: Credo, Dialyser
 
 ## Engineering Standards
 

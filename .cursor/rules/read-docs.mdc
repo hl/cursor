@@ -1,7 +1,7 @@
 ---
 description: 
-globs: 
-alwaysApply: true
+globs: *.ex,*.exs
+alwaysApply: false
 ---
 ## Description
 This rule ensures that before Cursor IDE suggests code, it makes sure that it's valid by checking the documentation or codebase first. This ensures at least that the modules and functions exist and that the arguments are in the correct order.
@@ -48,9 +48,17 @@ new_min_start = Enum.min([current_min_start, rule_min_start], Date)
 new_max_end = Enum.max([current_max_end, rule_max_end], Date)
 ```
 
+✅ Correct Code Suggestion (External - Task.Supervisor):
+```elixir
+# Correct: supervisor, enumerable, function, options
+Task.Supervisor.async_stream(supervisor, user_ids, fn user_id ->
+  process_user(user_id)
+end, max_concurrency: 10)
+```
+
 ✅ Correct Code Suggestion (Internal - assuming `Backend.Utils.calculate_foo/1` exists):
 ```elixir
-result = Backend.Utils.calculate_foo(input_data)
+result = MyApp.Utils.calculate_foo(input_data)
 ```
 
 ❌ Incorrect Code Suggestion (External):
@@ -59,7 +67,16 @@ new_min_start = Date.min(current_min_start, rule_min_start)
 new_max_end = Date.max(current_max_end, rule_max_end)
 ```
 
-❌ Incorrect Code Suggestion (Internal - `Backend.Helpers.process_bar/2` doesn't exist or has wrong arity):
+❌ Incorrect Code Suggestion (External - wrong argument order):
 ```elixir
-processed = Backend.Helpers.process_bar(item, :option)
+# Wrong: Missing enumerable argument, function in wrong position
+user_ids
+|> Task.Supervisor.async_stream(supervisor, fn user_id ->
+  process_user(user_id)
+end, max_concurrency: 10)
+```
+
+❌ Incorrect Code Suggestion (Internal - `MyApp.Helpers.process_bar/2` doesn't exist or has wrong arity):
+```elixir
+processed = MyApp.Helpers.process_bar(item, :option)
 ```

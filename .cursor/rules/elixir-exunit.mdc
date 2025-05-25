@@ -1,6 +1,6 @@
 ---
 description: 
-globs: ["**/*.exs"]
+globs: *.exs
 alwaysApply: false
 ---
 # Elixir ExUnit Test Conventions

@@ -1,6 +1,6 @@
 ---
 description: 
-globs: ["**/*.ex", "**/*.exs", "**/*.heex", "**/mix.exs"]
+globs: *.ex,*.exs,*.heex
 alwaysApply: false
 ---
 ## Description
