@@ -1,6 +1,6 @@
 ---
 description: Cursor Rules Location Rule
-globs: *.mdc
+globs: 
 alwaysApply: false
 ---
 ## Description

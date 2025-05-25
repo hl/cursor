@@ -1,0 +1,89 @@
+---
+description: Best Simple System for Now (BSSN) - Guide for building simple, focused solutions that meet current needs without over-engineering
+globs: 
+alwaysApply: false
+---
+
+# Best Simple System for Now (BSSN)
+
+Follow the BSSN philosophy: Build the **simplest** system that meets the needs **right now**, written to an **appropriate standard**. Avoid both over-engineering and corner-cutting.
+
+## Core Principles
+
+### 1. Design "for Now"
+- Focus on what is actually needed RIGHT NOW, not anticipated future needs
+- Resist the urge to build generic solutions or "rules engines"
+- See what is really there, not the patterns your brain wants to see
+- Trust that you can evolve the code when needs actually change
+
+### 2. Keep it Simple
+- No speculative interfaces or abstractions
+- No overly broad data types where specific ones will do
+- No generic functionality where specific code is clearer
+- Remove anything that isn't serving a current, concrete need
+- Flexibility comes from simplicity, not from anticipation
+
+### 3. Write it Best
+- Don't cut corners - use the appropriate quality standard for the context
+- Core business functionality deserves higher quality than experimental features
+- Apply practices like TDD where they add value
+- Use consistent domain language
+- Write code that is "joyful" to work with
+
+## Implementation Guidelines
+
+### When writing new code:
+- Start by solving ONLY the immediate problem
+- If there are 9 types, write 9 specific handlers - don't reach for a generic framework
+- Choose simple, obvious solutions over clever abstractions
+- Make code highly opinionated and deliberately narrow
+
+### When evaluating solutions:
+- Consider the total cost: adoption, learning, dependencies, quirks, future removal
+- A few lines of custom code may be better than a complex library
+- Home-grown isn't always the answer, but "seeing what's really there" is
+
+### When evolving code:
+- Change in response to actual new demands, not predictions
+- Evolve toward a new "Best Simple System" for the new "Now"
+- Each change should leave the system as simple as possible
+- Delete code that no longer serves current needs
+
+## Examples to Follow
+
+### Good: Specific solution for known types
+```javascript
+// If you have 9 types, just handle 9 types
+interface Jsonable<T> {
+  String toJson(T obj);
+}
+
+class SomeType {
+  static SomeType fromJson(String json) { ... }
+}
+```
+
+### Bad: Generic framework for unknown future
+```javascript
+// Don't build a "flexible" rules engine for 9 types
+class GenericJsonFramework<T> {
+  // Complex reflection-based solution...
+}
+```
+
+## Red Flags to Avoid
+- "We might need this later"
+- "Let's make this configurable"
+- "What if we have 10,000 users?" (when you have 12)
+- Interfaces with single implementations
+- Abstraction layers "for flexibility"
+- Design patterns applied without clear current benefit
+
+## Remember
+- You cannot predict the future accurately
+- Simple code can flex in any direction
+- Complex systems designed from scratch rarely work (Gall's Law)
+- Be like water - flexibility comes from simplicity, not complexity
+- It's easier to add complexity later than to remove it
+
+When in doubt, choose the simpler solution that solves today's problem well.

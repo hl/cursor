@@ -1,0 +1,48 @@
+---
+description: Main orchestration rule for Elixir development
+globs: 
+alwaysApply: true
+---
+
+# Elixir Development Guidelines
+
+This is the main orchestration rule that coordinates behavior for Elixir development.
+
+## Rule Categories
+
+### Orchestrated Rules
+These rules work together and are referenced here for coordinated behavior:
+
+1. **@elixir-expert.mdc** - Elixir/Phoenix expertise and stack knowledge
+2. **@elixir-exunit.mdc** - ExUnit testing conventions and best practices
+3. **@elixir-code-style.mdc** - Elixir style guide adherence and formatting
+4. **@code-reasoning.mdc** - Structured approach to code analysis and implementation
+5. **@response-formatting.mdc** - Communication style and output formatting
+6. **@follow-up-questions.mdc** - Generate thought-provoking follow-up questions
+7. **@concise-mode.mdc** - Ultra-concise responses when using VV prefix
+8. **@best-simple-system-for-now.mdc** - BSSN philosophy for avoiding over-engineering
+
+### Required Rules (Always Active)
+These rules are automatically applied and don't need explicit orchestration:
+- **@read-docs.mdc** - Validates code suggestions against documentation
+- **@code-reasoning.mdc** - Also listed above as it's both required and orchestrated
+- **@response-formatting.mdc** - Also listed above for the same reason
+
+### Meta Rules
+- **@cursor-rules-location.mdc** - Defines where rule files should be placed
+
+## Rule Interactions
+
+- When working with Elixir files, the `elixir-expert` rule provides stack-specific guidance
+- Code style is enforced through `elixir-code-style` for consistency
+- Testing follows `elixir-exunit` conventions for all test files
+- All responses follow `response-formatting` for consistency
+- Code implementations require `code-reasoning` analysis first
+- Follow-up questions can be disabled by using the VV prefix (`concise-mode`)
+- All code follows BSSN principles to maintain simplicity
+
+## Additional Context
+
+When generating commit messages, use the conventional format from @git-auto-commit.mdc.
+
+Remember: The goal is to provide expert Elixir guidance while maintaining code simplicity and clear communication.

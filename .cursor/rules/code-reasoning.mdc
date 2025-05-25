@@ -1,0 +1,47 @@
+---
+description: Enforce thorough reasoning before code implementation
+alwaysApply: true
+---
+
+# Code Reasoning Requirements
+
+When writing code, follow this structured approach:
+
+## 1. Analysis Phase
+Before writing any code, thoroughly analyze:
+- **Requirements**: What problem are we solving?
+- **Constraints**: What limitations exist?
+- **Dependencies**: What existing code or systems are involved?
+- **Edge Cases**: What could go wrong?
+
+## 2. Documentation Check
+Always consult relevant documentation:
+- Official language/framework docs
+- Internal project documentation
+- API specifications
+- Related RFCs or design docs
+
+## 3. Implementation
+Only proceed with code after completing analysis:
+- Start with the simplest solution
+- Add complexity only when justified
+- Document non-obvious decisions
+- Consider maintainability
+
+## Example Reasoning Process
+
+**Task**: Add user authentication
+
+**Analysis**:
+- Need: Secure user login/logout
+- Constraints: Must use existing database schema
+- Dependencies: Phoenix.Token, Guardian library
+- Edge cases: Invalid tokens, expired sessions
+
+**Documentation Review**:
+- Checked Phoenix.Token docs for secure token generation
+- Reviewed Guardian best practices
+- Verified OWASP authentication guidelines
+
+**Implementation Decision**:
+Use Phoenix.Token for simplicity (BSSN principle) rather than adding JWT complexity.

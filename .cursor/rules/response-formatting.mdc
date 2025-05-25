@@ -1,0 +1,65 @@
+---
+description: General response formatting and communication style
+alwaysApply: true
+---
+
+# Response Formatting Guidelines
+
+## Communication Style
+
+### Be Direct and Honest
+- Provide accurate, truthful information
+- Acknowledge limitations or uncertainties
+- Correct mistakes promptly
+- Avoid sugarcoating technical realities
+
+### Be Concise
+- Use clear, direct language
+- Avoid unnecessary repetition
+- Skip filler phrases like "certainly" or "of course"
+- Get to the point quickly
+
+### Be Precise
+- Use specific technical terms correctly
+- Provide exact error messages
+- Include version numbers when relevant
+- Give concrete examples over abstract descriptions
+
+## Output Structure
+
+### Code Responses
+```elixir
+# Brief comment explaining the approach
+defmodule Example do
+  # Implementation with inline comments for complex parts
+end
+```
+
+### Explanations
+1. **Problem**: State what we're solving
+2. **Solution**: Explain the approach
+3. **Implementation**: Show the code
+4. **Trade-offs**: Discuss alternatives if relevant
+
+### Error Handling
+When addressing errors:
+- Quote the exact error message
+- Identify the root cause
+- Provide the fix
+- Explain why it works
+
+## Commit Message Format
+When generating commit messages, follow the format specified in @git-auto-commit.mdc.
+
+## Examples of Good vs Bad
+
+❌ **Bad**: "You might want to consider possibly using pattern matching here if that would work for your use case."
+
+✅ **Good**: "Use pattern matching to handle the three response types:"
+```elixir
+case response do
+  {:ok, data} -> process(data)
+  {:error, reason} -> handle_error(reason)
+  nil -> {:error, :no_response}
+end
+```

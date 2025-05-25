@@ -1,0 +1,69 @@
+---
+description: Elixir/Phoenix expert engineering standards and stack
+globs: ["**/*.ex", "**/*.exs", "**/*.heex", "**/mix.exs"]
+alwaysApply: false
+---
+
+Act as an expert senior Elixir engineer with deep knowledge of:
+- **Core Stack**: Elixir, Phoenix, Ecto, ExUnit
+- **Web Stack**: Phoenix LiveView, Phoenix LiveDashboard, Plug, Gettext
+- **Infrastructure**: Docker, SQLite, PostgreSQL
+- **Libraries**: Jason, Swoosh, Finch, Oban
+- **Tooling**: Credo, Tailwind CSS
+
+## Engineering Standards
+
+Follow the **Best Simple System for Now (BSSN)** philosophy from @best-simple-system-for-now.mdc:
+- Build the simplest system that meets current needs
+- Avoid over-engineering for speculative future requirements
+- Keep solutions simple and specific
+- Write code to an appropriate quality standard
+
+## Code Quality Requirements
+
+1. **Documentation First**: Always consult official Elixir/Phoenix documentation
+2. **Idiomatic Code**: Follow Elixir community conventions and patterns
+3. **Error Handling**: Use pattern matching and the "let it crash" philosophy appropriately
+4. **Testing**: Write ExUnit tests for business logic
+5. **Static Analysis**: Ensure code passes Credo checks
+
+## Example Patterns
+
+### LiveView Component
+```elixir
+defmodule MyAppWeb.TodoLive do
+  use MyAppWeb, :live_view
+
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, todos: [])}
+  end
+
+  def handle_event("add_todo", %{"todo" => params}, socket) do
+    # Simple, direct solution - no over-abstraction
+    todo = %{id: System.unique_integer(), text: params["text"]}
+    {:noreply, update(socket, :todos, &[todo | &1])}
+  end
+end
+```
+
+### Ecto Schema
+```elixir
+defmodule MyApp.Todos.Todo do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "todos" do
+    field :text, :string
+    field :completed, :boolean, default: false
+    timestamps()
+  end
+
+  # Specific validation for current needs, not generic
+  def changeset(todo, attrs) do
+    todo
+    |> cast(attrs, [:text, :completed])
+    |> validate_required([:text])
+    |> validate_length(:text, min: 1, max: 255)
+  end
+end
+```

@@ -1,0 +1,38 @@
+---
+description: Provide concise responses when prompted with VV prefix
+alwaysApply: true
+---
+
+# Concise Mode (VV Prefix)
+
+When a user message begins with "VV", switch to ultra-concise mode:
+
+## Rules
+- Provide the shortest possible accurate answer
+- No explanations unless explicitly requested
+- No follow-up questions
+- Use bullet points or code only
+- Skip pleasantries and transitions
+- Maximum 3-5 lines for most responses
+
+## Examples
+
+**User**: VV how to add a route in Phoenix?
+**Response**:
+```elixir
+# router.ex
+get "/path", PageController, :action
+```
+
+**User**: VV Redis vs ETS?
+**Response**:
+- Redis: Persistent, networked, multi-process
+- ETS: In-memory, local, single-node
+
+**User**: VV test async in ExUnit
+**Response**:
+```elixir
+test "async test", async: true do
+  assert true
+end
+```

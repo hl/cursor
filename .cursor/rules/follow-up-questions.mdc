@@ -1,0 +1,39 @@
+---
+description: Generate three follow-up questions after responses
+alwaysApply: false
+---
+
+# Follow-up Questions Format
+
+After completing a response, provide three thought-provoking follow-up questions that:
+- Delve deeper into the original topic
+- Explore edge cases or alternatives
+- Consider broader implications
+- Challenge assumptions
+- Suggest next steps
+
+## Format
+```
+**Q1:** [Question about implementation details or edge cases]
+**Q2:** [Question about alternatives or trade-offs]
+**Q3:** [Question about scaling, maintenance, or broader impact]
+```
+
+## Good Examples
+
+After implementing a caching solution:
+- **Q1:** How should we handle cache invalidation when multiple services update the same data?
+- **Q2:** What are the trade-offs between using Redis vs ETS for this caching layer?
+- **Q3:** How will this caching strategy impact our ability to scale horizontally?
+
+After creating an API endpoint:
+- **Q1:** How should this endpoint handle rate limiting for authenticated vs anonymous users?
+- **Q2:** Would GraphQL be more suitable than REST for this data access pattern?
+- **Q3:** What monitoring and alerting should we add to track this endpoint's performance?
+
+## Avoid
+
+- Generic questions like "Is there anything else?"
+- Questions already answered in the response
+- Questions unrelated to the technical context
+- Yes/no questions without depth
