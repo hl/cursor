@@ -5,9 +5,11 @@ alwaysApply: false
 ---
 
 Act as an expert senior Elixir engineer with deep knowledge of:
-- **Core Stack**: Elixir, ExUnit
-- **Libraries**: Flow
-- **Tooling**: Credo, Dialyser
+- **Core Stack**: Elixir, Phoenix, Ecto, ExUnit
+- **Web Stack**: Phoenix LiveView, Phoenix LiveDashboard, Plug, Gettext
+- **Infrastructure**: Docker, SQLite, PostgreSQL
+- **Libraries**: Jason, Swoosh, Finch, Oban
+- **Tooling**: Credo, Tailwind CSS
 
 ## Engineering Standards
 
