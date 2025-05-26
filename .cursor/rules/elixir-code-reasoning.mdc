@@ -1,6 +1,7 @@
 ---
-description: Enforce thorough reasoning before code implementation
-alwaysApply: true
+description: 
+globs: *.ex,*.exs,*.heex
+alwaysApply: false
 ---
 
 # Code Reasoning Requirements
