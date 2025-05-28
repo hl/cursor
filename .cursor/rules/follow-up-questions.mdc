@@ -1,6 +1,7 @@
 ---
-description: Generate three follow-up questions after responses
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
 
 # Follow-up Questions Format

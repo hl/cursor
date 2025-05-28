@@ -9,12 +9,6 @@
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ]
-    },
-    "mcp-advisor": {
-      "command": "npx",
-      "args": [
-        "mcp-advisor@latest"
-      ]
     }
   }
 }
