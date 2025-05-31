@@ -1,0 +1,195 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Feature Specification Generation
+
+This rule provides guidelines for creating comprehensive feature specifications that clearly communicate purpose, functionality, and implementation details. Specifications should balance technical accuracy with readability for diverse audiences.
+
+## Document Structure
+
+Every feature specification must include these core sections:
+
+### 1. Purpose
+Clearly articulate why this feature exists:
+- **Problem Statement**: What challenge or need does this address?
+- **Objectives**: What specific goals will this achieve?
+- **Value Proposition**: How does this benefit users or the business?
+- **Scope**: What is included and explicitly excluded?
+
+### 2. Core Concepts
+Define all fundamental elements of the feature:
+- **Terminology**: Key terms and their definitions
+- **Entities**: Main objects or components involved
+- **Relationships**: How entities interact and depend on each other
+- **Constraints**: Limitations or boundaries of the system
+
+Use clear formatting:
+```markdown
+* **Term**: Concise definition explaining what it means
+* **Entity**: Description of its role and characteristics
+* **Relationship**: How A connects to B and why it matters
+```
+
+### 3. Functionality
+Detail what the feature does and how it works:
+- **Main Functions**: Primary capabilities listed as bullet points
+- **User Interactions**: How users engage with the feature
+- **System Behavior**: How the system responds to various inputs
+- **Process Flows**: Step-by-step sequences for key operations
+
+Include both happy paths and edge cases.
+
+### 4. Data Model / Structure
+For features involving data:
+- **Schema Definitions**: Structure of data entities
+- **Field Specifications**: Types, constraints, and validation rules
+- **Relationships**: How data entities connect
+- **Data Flow**: How information moves through the system
+
+Example format:
+```
+Entity: User
+- id: unique identifier (required)
+- name: string, max 255 chars (required)
+- email: string, valid email format (required)
+- status: enum [active, inactive, pending] (default: pending)
+- created_at: timestamp (auto-generated)
+```
+
+### 5. Business Rules & Validations
+Document all rules that govern the feature:
+- **Validation Rules**: What makes data or actions valid/invalid
+- **Business Logic**: Core rules that drive functionality
+- **Permissions**: Who can do what and when
+- **State Transitions**: Valid state changes and their conditions
+
+### 6. Technical Specifications
+Include relevant technical details:
+- **Performance Requirements**: Response times, throughput, limits
+- **Scalability Considerations**: How the feature handles growth
+- **Security Requirements**: Authentication, authorization, data protection
+- **Integration Points**: External systems or APIs involved
+- **Error Handling**: How failures are managed and communicated
+
+### 7. Visual Documentation
+
+Use MermaidJS diagrams to illustrate complex concepts:
+
+#### Flow Charts
+For process flows and decision trees:
+```mermaid
+flowchart TD
+    Start[User Initiates Action] --> Validate{Valid Input?}
+    Validate -->|Yes| Process[Process Request]
+    Validate -->|No| Error[Show Error Message]
+    Process --> Check{Meets Criteria?}
+    Check -->|Yes| Success[Complete Action]
+    Check -->|No| Reject[Reject with Reason]
+```
+
+#### State Diagrams
+For features with multiple states:
+```mermaid
+stateDiagram-v2
+    [*] --> Pending: Create
+    Pending --> Active: Approve
+    Pending --> Rejected: Reject
+    Active --> Suspended: Suspend
+    Suspended --> Active: Reactivate
+    Active --> Completed: Complete
+    Completed --> [*]
+```
+
+#### Sequence Diagrams
+For system interactions:
+```mermaid
+sequenceDiagram
+    participant User
+    participant System
+    participant Database
+    participant External API
+    
+    User->>System: Submit Request
+    System->>Database: Validate Data
+    Database-->>System: Validation Result
+    System->>External API: Process Transaction
+    External API-->>System: Transaction Result
+    System->>Database: Store Result
+    System-->>User: Return Response
+```
+
+### 8. Implementation Considerations
+Guide the development process:
+- **Development Phases**: Logical breakdown of work
+- **Migration Strategy**: If modifying existing functionality
+- **Feature Toggles**: Gradual rollout approach
+- **Testing Strategy**: Types of tests needed
+- **Rollback Plan**: How to revert if issues arise
+
+### 9. User Experience
+Consider the human element:
+- **User Stories**: "As a [user type], I want [goal] so that [benefit]"
+- **Acceptance Criteria**: Measurable conditions for each story
+- **UI/UX Considerations**: Interface design principles
+- **Accessibility Requirements**: Ensuring inclusive design
+
+### 10. Success Metrics
+Define how to measure success:
+- **Key Performance Indicators**: What to measure
+- **Target Values**: Specific goals to achieve
+- **Measurement Method**: How to collect data
+- **Evaluation Timeline**: When to assess results
+
+### 11. Future Enhancements
+Potential improvements and extensions:
+- **Phase 2 Features**: Next logical additions
+- **Optimization Opportunities**: Performance or usability improvements
+- **Integration Possibilities**: Potential connections with other systems
+- **Long-term Vision**: Where this feature could evolve
+
+## Best Practices
+
+### Writing Guidelines
+- **Be Specific**: Avoid vague statements; use concrete examples
+- **Stay Consistent**: Use the same terms throughout
+- **Think Completeness**: Cover normal, edge, and error cases
+- **Consider Context**: Provide enough background for understanding
+
+### Document Format
+- **Use Markdown**: For consistent formatting
+- **Include Examples**: Show, don't just tell
+- **Add Visuals**: Diagrams clarify complex concepts
+- **Structure Clearly**: Use headers and lists for easy scanning
+
+### Quality Checklist
+Before finalizing a specification:
+- [ ] Purpose is clearly stated
+- [ ] All terms are defined
+- [ ] Functionality covers all scenarios
+- [ ] Business rules are complete
+- [ ] Technical requirements are feasible
+- [ ] Diagrams enhance understanding
+- [ ] Success criteria are measurable
+- [ ] Future possibilities are considered
+
+## Common Pitfalls to Avoid
+
+1. **Over-specification**: Don't dictate implementation details
+2. **Under-specification**: Don't leave critical decisions ambiguous
+3. **Assumption Blindness**: Document all assumptions explicitly
+4. **Scope Creep**: Clearly mark what's out of scope
+5. **Technical Jargon**: Balance technical accuracy with readability
+
+## Examples of Good Specifications
+
+A well-written specification should:
+- Start with a clear problem statement
+- Define success in measurable terms
+- Include visual aids for complex flows
+- Address security and performance upfront
+- Consider the full user journey
+- Plan for future iterations
+
+Remember: The specification is a communication tool. It should enable anyone reading it to understand what will be built, why it matters, and how it will work.

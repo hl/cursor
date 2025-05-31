@@ -21,6 +21,7 @@ These rules work together and are referenced here for coordinated behavior:
 7. **@follow-up-questions.mdc** - Generate thought-provoking follow-up questions
 8. **@concise-mode.mdc** - Ultra-concise responses when using VV prefix
 9. **@best-simple-system-for-now.mdc** - BSSN philosophy for avoiding over-engineering
+10. **@specification-generation.mdc** - Guidelines for creating comprehensive product/feature specifications
 
 ### Required Rules (Always Active)
 These rules are automatically applied and don't need explicit orchestration:
@@ -39,6 +40,7 @@ These rules are automatically applied and don't need explicit orchestration:
 - Code implementations require `code-reasoning` analysis when working with Elixir files
 - Follow-up questions can be disabled by using the VV prefix (`concise-mode`)
 - All code follows BSSN principles to maintain simplicity
+- Specification documents follow `specification-generation` guidelines for consistency and completeness
 
 ## Additional Context
 
